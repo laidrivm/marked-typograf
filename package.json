@@ -1,14 +1,16 @@
 {
-  "name": "marked-extension-template",
-  "version": "0.0.0",
-  "description": "marked extension template",
+  "name": "marked-typograf",
+  "version": "0.0.1",
+  "description": "marked extension for typograf",
   "main": "./lib/index.cjs",
   "module": "./src/index.js",
   "browser": "./lib/index.umd.js",
   "type": "module",
   "keywords": [
     "marked",
-    "extension"
+    "extension",
+    "typograf",
+    "typography"
   ],
   "files": [
     "lib/",
@@ -29,16 +31,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markedjs/marked-extension-template.git"
+    "url": "git+https://github.com/laidrivm/marked-typograf.git"
   },
-  "author": "Tony Brix <Tony@Brix.ninja> (https://Tony.Brix.ninja)",
+  "author": "Vladimir Lazarev <ladirvm@gmail.com> (https://laidrivm.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markedjs/marked-extension-template/issues"
+    "url": "https://github.com/laidrivm/marked-typograf/issues"
   },
-  "homepage": "https://github.com/markedjs/marked-extension-template#readme",
+  "homepage": "https://github.com/laidrivm/marked-typograf#readme",
   "peerDependencies": {
-    "marked": ">=15 <16"
+    "marked": ">=15"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
