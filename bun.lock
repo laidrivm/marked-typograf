@@ -5,6 +5,7 @@
       "name": "marked-extension-template",
       "dependencies": {
         "esbuild": "^0.25.1",
+        "typograf": "^7.4.2",
       },
       "devDependencies": {
         "@markedjs/eslint-config": "^1.0.12",
@@ -683,6 +684,8 @@
     "typescript": ["typescript@5.5.4", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q=="],
 
     "typescript-eslint": ["typescript-eslint@8.26.0", "", { "dependencies": { "@typescript-eslint/eslint-plugin": "8.26.0", "@typescript-eslint/parser": "8.26.0", "@typescript-eslint/utils": "8.26.0" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <5.9.0" } }, "sha512-PtVz9nAnuNJuAVeUFvwztjuUgSnJInODAUx47VDwWPXzd5vismPOtPtt83tzNXyOjVQbPRp786D6WFW/M2koIA=="],
+
+    "typograf": ["typograf@7.4.2", "", {}, "sha512-r0LyfrFuHzZbaBGbQbuIH9Rdzd8ac0suQWkfBcLW1DJ18sUpiyvqj3awXwvmQldQE3kFiunwuhy0xSSLRJmXWg=="],
 
     "uglify-js": ["uglify-js@3.17.4", "", { "bin": { "uglifyjs": "bin/uglifyjs" } }, "sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g=="],
 

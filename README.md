@@ -1,8 +1,13 @@
 # marked-typograf
 Use [typograf](https://github.com/typograf/typograf/) to translate plain punctuation characters from markdown into typographic punctuation inside HTML entities.
 
+# Setup
+
+```bash
+bun add marked-typograf
+```
+
 # Usage
-<!-- Show most examples of how to use this extension -->
 
 ```js
 import {marked} from "marked";
@@ -28,8 +33,7 @@ marked.parse("example markdown");
 
 ## TODO:
 
-- [ ] Fill in description
-- [ ] Update usage example: options, markdown input and html output
 - [ ] Write extension in `/src/index.js`
 - [ ] Write tests in `/spec/index.test.js`
+- [ ] Update usage example: options, markdown input and html output
 - [ ] Uncomment release in `/.github/workflows/main.yml`

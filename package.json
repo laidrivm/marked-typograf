@@ -4,7 +4,6 @@
   "description": "marked extension for typograf",
   "main": "./lib/index.cjs",
   "module": "./lib/index.mjs",
-  "browser": "./lib/index.umd.js",
   "type": "module",
   "keywords": [
     "marked",
@@ -53,6 +52,7 @@
     "semantic-release": "^24.2.3"
   },
   "dependencies": {
-    "esbuild": "^0.25.1"
+    "esbuild": "^0.25.1",
+    "typograf": "^7.4.2"
   }
 }

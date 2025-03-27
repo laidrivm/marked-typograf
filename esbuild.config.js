@@ -1,34 +1,31 @@
-import { build } from "esbuild";
+import esbuild from 'esbuild';
 
 const sharedConfig = {
-  entryPoints: ["src/index.js"],
+  entryPoints: ['src/index.js'],
   bundle: true,
   sourcemap: true,
   minify: true,
-  external: ["marked"], // ToDo: add typograf here
+  external: ['marked, typograf'],
 };
 
-async function buildAll() {
-  await build({
-    ...sharedConfig,
-    format: "esm",
-    outfile: "lib/index.mjs",
-  });
+function buildAll() {
+  try {
+    esbuild.build({
+      ...sharedConfig,
+      format: 'esm',
+      outfile: 'lib/index.mjs',
+    });
 
-  await build({
-    ...sharedConfig,
-    format: "cjs",
-    outfile: "lib/index.cjs",
-  });
+    esbuild.build({
+      ...sharedConfig,
+      format: 'cjs',
+      outfile: 'lib/index.cjs',
+    });
 
-  await build({
-    ...sharedConfig,
-    format: "umd",
-    globalName: "markedTypograf",
-    outfile: "lib/index.umd.js",
-  });
-
-  console.log("Build completed successfully!");
+    console.log('Build completed successfully!');
+  } catch {
+    process.exit(1)
+  }
 }
 
-buildAll().catch(() => process.exit(1));
+buildAll();

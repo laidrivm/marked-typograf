@@ -1,23 +1,31 @@
-export default function(options = {}) {
-  // extension code here
+import Typograf from 'typograf';
+
+export function markedTypograf({
+  typografOptions = { locale: 'en-US' },
+  typografSetup = undefined,
+} = {}) {
+  const tp = new Typograf(typografOptions);
+  if (typografSetup) {
+    typografSetup(tp);
+  }
 
   return {
     tokenizer: {
-      paragraph(src) {
-        if (src !== 'example markdown') {
-          return false;
-        }
+      inlineText(src) {
+        const cap = this.rules.inline.text.exec(src);
+        if (!cap) return;
 
-        const token = {
-          type: 'paragraph',
-          raw: src,
-          text: 'example html',
-          tokens: [],
+        return {
+          type: 'text',
+          raw: cap[0],
+          text: cap[0],
+          escaped: true,
         };
-
-        this.lexer.inline(token.text, token.tokens);
-
-        return token;
+      },
+    },
+    hooks: {
+      postprocess(html) {
+        return tp.execute(html);
       },
     },
   };
