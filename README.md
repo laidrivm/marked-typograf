@@ -13,27 +13,16 @@ bun add marked-typograf
 import {marked} from "marked";
 import {markedTypograf} from "marked-typograf";
 
-// or UMD script
-// <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
-// <script src="https://cdn.jsdelivr.net/npm/marked-typograf/lib/index.umd.js"></script>
-
 const options = {
-	// default options
+	locale: "ru"//default is en-US
 };
 
 marked.use(markedTypograf(options));
 
-marked.parse("example markdown");
-// <p>example html</p>
+marked.parse('Hello -- "world"!');
+// <p>Hello — «world»!</p>
 ```
 
 ## `options`
 
-<!-- If there are no options you can delete this section -->
-
-## TODO:
-
-- [ ] Write extension in `/src/index.js`
-- [ ] Write tests in `/spec/index.test.js`
-- [ ] Update usage example: options, markdown input and html output
-- [ ] Uncomment release in `/.github/workflows/main.yml`
+For more possible options please check [the original typograf documentation](https://github.com/typograf/typograf/tree/dev/docs).

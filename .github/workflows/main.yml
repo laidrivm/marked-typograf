@@ -83,31 +83,31 @@ jobs:
       - name: Build 🗜️
         run: bun run build
 
-  ############ Requires NPM_TOKEN in secrets ############
-  # Release:
-  #   needs: [Test, Coverage, Lint, Build]
-  #   if: |
-  #     github.ref == 'refs/heads/main' &&
-  #     github.event.repository.fork == false
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v4
-  #     - name: Install Bun
-  #       uses: oven-sh/setup-bun@v1
-  #     - name: Cache Dependencies
-  #       uses: actions/cache@v3
-  #       with:
-  #         path: ~/.bun
-  #         key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
-  #         restore-keys: |
-  #           bun-${{ runner.os }}-
-  #     - name: Install Dependencies
-  #       run: bun install --frozen-lockfile
-  #     - name: Build 🗜️
-  #       run: bun run build
-  #     - name: Release 🎉
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  #       run: bun semantic-release
+  Release:
+    needs: [Test, Coverage, Lint, Build]
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event.repository.fork == false
+    runs-on: ubuntu-latest
+      environment: prod
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+      - name: Build 🗜️
+        run: bun run build
+      - name: Release 🎉
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: bun semantic-release
