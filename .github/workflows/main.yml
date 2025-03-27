@@ -89,7 +89,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       github.event.repository.fork == false
     runs-on: ubuntu-latest
-      environment: prod
+    environment: prod
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
