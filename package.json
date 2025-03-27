@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "marked extension for typograf",
   "main": "./lib/index.cjs",
-  "module": "./src/index.js",
+  "module": "./lib/index.mjs",
   "browser": "./lib/index.umd.js",
   "type": "module",
   "keywords": [
@@ -18,12 +18,12 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/index.js",
+      "import": "./lib/index.mjs",
       "require": "./lib/index.cjs"
     }
   },
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "bun esbuild.config.js",
     "format": "eslint --fix",
     "lint": "eslint --fix"
   },
@@ -41,8 +41,6 @@
     "marked": ">=15"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
     "@markedjs/eslint-config": "^1.0.12",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
@@ -50,12 +48,11 @@
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
-    "babel-jest": "^29.7.0",
     "eslint": "^9.23.0",
-    "globals": "^16.0.0",
-    "jest-cli": "^29.7.0",
     "marked": "^15.0.7",
-    "rollup": "^4.37.0",
     "semantic-release": "^24.2.3"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.1"
   }
 }
