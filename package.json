@@ -25,9 +25,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "format": "eslint --fix",
-    "lint": "eslint",
-    "test": "jest --verbose",
-    "test:cover": "jest --coverage"
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",

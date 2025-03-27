@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 import thisExtension from '../src/index.js';
+import { test, expect } from "bun:test";
 
 describe('this-extension', () => {
   beforeEach(() => {

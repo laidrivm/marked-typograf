@@ -12,57 +12,76 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Cache Dependencies
+        uses: actions/cache@v3
         with:
-          node-version: '*'
-          check-latest: true
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
       - name: Install Dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Run Tests 👩🏽‍💻
-        run: npm run test
+        run: bun test
 
   Coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Cache Dependencies
+        uses: actions/cache@v3
         with:
-          node-version: 'lts/*'
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
       - name: Install Dependencies
-        run: npm ci
-      - name: Run Tests 👩🏽‍💻
-        run: npm run test:cover
+        run: bun install --frozen-lockfile
+      - name: Run Test Coverage 📊
+        run: bun test --coverage
 
   Lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Cache Dependencies
+        uses: actions/cache@v3
         with:
-          node-version: 'lts/*'
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
       - name: Install Dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Lint ✨
-        run: npm run lint
+        run: bun run lint
 
   Build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Cache Dependencies
+        uses: actions/cache@v3
         with:
-          node-version: 'lts/*'
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
       - name: Install Dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
       - name: Build 🗜️
-        run: npm run build
+        run: bun run build
 
   ############ Requires NPM_TOKEN in secrets ############
   # Release:
@@ -74,16 +93,21 @@ jobs:
   #   steps:
   #     - name: Checkout Code
   #       uses: actions/checkout@v4
-  #     - name: Install Node
-  #       uses: actions/setup-node@v4
+  #     - name: Install Bun
+  #       uses: oven-sh/setup-bun@v1
+  #     - name: Cache Dependencies
+  #       uses: actions/cache@v3
   #       with:
-  #         node-version: 'lts/*'
+  #         path: ~/.bun
+  #         key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+  #         restore-keys: |
+  #           bun-${{ runner.os }}-
   #     - name: Install Dependencies
-  #       run: npm ci
+  #       run: bun install --frozen-lockfile
   #     - name: Build 🗜️
-  #       run: npm run build
+  #       run: bun run build
   #     - name: Release 🎉
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  #       run: npx semantic-release
+  #       run: bun semantic-release
