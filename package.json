@@ -41,18 +41,11 @@
   },
   "devDependencies": {
     "@markedjs/eslint-config": "^1.0.12",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
-    "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.3",
     "eslint": "^9.23.0",
-    "marked": "^15.0.7",
-    "semantic-release": "^24.2.3"
+    "esbuild": "^0.25.1"
   },
   "dependencies": {
-    "esbuild": "^0.25.1",
-    "typograf": "^7.4.2"
+    "typograf": "^7.4.2",
+    "marked": "^15.0.7"
   }
 }
