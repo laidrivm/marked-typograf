@@ -14,7 +14,7 @@ import {marked} from "marked";
 import {markedTypograf} from "marked-typograf";
 
 const options = {
-	locale: "ru"//default is en-US
+  locale: "ru"//default is en-US
 };
 
 marked.use(markedTypograf(options));

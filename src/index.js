@@ -1,12 +1,9 @@
 import Typograf from 'typograf';
 
-export function markedTypograf({
-  typografOptions = { locale: 'en-US' },
-  typografSetup = undefined,
-} = {}) {
-  const tp = new Typograf(typografOptions);
-  if (typografSetup) {
-    typografSetup(tp);
+export function markedTypograf(opts = {}) {
+  const tp = new Typograf(opts.typografOptions || { locale: 'en-US' });
+  if (opts.typografSetup) {
+    opts.typografSetup(tp);
   }
 
   return {
