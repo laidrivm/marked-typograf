@@ -18,8 +18,15 @@ const options = {
     locale: 'ru'
   },
   typografSetup: (tp) => {
-    tp.addSafeTag('<code>', '</code>')
-  }
+    tp.addSafeTag('<code>', '</code>');
+    tp.disableRule('common/space/afterColon');
+  },
+  customRules: [{
+    name: 'common/other/typographicSmiley',
+    handler: function(text) {
+      return text.replace(/:-\)/g, ':—)');
+    },
+  }]
 };
 
 marked.use(markedTypograf(options));

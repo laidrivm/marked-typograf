@@ -15,9 +15,9 @@ describe('markedTypograf', () => {
   test('applies ru typographic transformations with such a locale passed', () => {
     const opts = {
       typografOptions: {
-        locale: 'ru'
-      }
-    }
+        locale: 'ru',
+      },
+    };
     marked.use(markedTypograf(opts));
     expect(marked('Hello -- "world"!')).toBe('<p>Hello — «world»!</p>');
   });
@@ -25,12 +25,12 @@ describe('markedTypograf', () => {
   test('preserves code span with such a safe tag set', () => {
     const opts = {
       typografSetup: (tp) => {
-        tp.addSafeTag('<code>', '</code>')
-        tp.addSafeTag('<pre>', '</pre>')
-        tp.addSafeTag('<kbd>', '</kbd>')
-        tp.addSafeTag('<script>', '</script>')
-      }
-    }
+        tp.addSafeTag('<code>', '</code>');
+        tp.addSafeTag('<pre>', '</pre>');
+        tp.addSafeTag('<kbd>', '</kbd>');
+        tp.addSafeTag('<script>', '</script>');
+      },
+    };
     marked.use(markedTypograf(opts));
     expect(marked('```Hello -- "world"!```')).toBe('<p><code>Hello -- &quot;world&quot;!</code></p>');
   });
@@ -42,15 +42,33 @@ describe('markedTypograf', () => {
 
   test('handles math signs', () => {
     marked.use(
-      markedTypograf (
+      markedTypograf(
         {
-          locale: "ru",
-          disableRule: "*",
+          locale: 'ru',
+          disableRule: '*',
         },
         (tp) => {
-          tp.enableRule("common/number/mathSigns");
-        }
-    ));
+          tp.enableRule('common/number/mathSigns');
+        },
+      ));
     expect(marked('0 != 1')).toBe('<p>0 ≠ 1</p>');
+  });
+
+  test('supports custom rules', () => {
+    const opts = {
+      typografSetup: (tp) => {
+        tp.disableRule('common/space/afterColon');
+      },
+      customRules: [{
+        name: 'common/other/typographicSmiley',
+        queue: 'end',
+        index: 1311,
+        handler: function(text) {
+          return text.replace(/:-\)/g, ':—)');
+        },
+      }]
+    };
+    marked.use(markedTypograf(opts));
+    expect(marked(':-)')).toBe('<p>:—)</p>');
   });
 });

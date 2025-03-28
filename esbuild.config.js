@@ -24,7 +24,7 @@ function buildAll() {
 
     console.log('Build completed successfully!');
   } catch {
-    process.exit(1)
+    process.exit(1);
   }
 }
 
