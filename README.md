@@ -1,5 +1,9 @@
 # marked-typograf
-Use [typograf](https://github.com/typograf/typograf/) to translate plain punctuation characters from markdown into typographic punctuation inside HTML entities.
+A plugin for [marked](https://github.com/markedjs/marked). Uses [typograf](https://github.com/typograf/typograf/) to translate plain punctuation characters from markdown into smart typographic punctuation inside HTML.
+
+Operates in postprocessing phase: applies all the rules after marked has already renderered it's resulting HTML.
+
+Supports all the typograf options, settings and the feature to add custom rules — only applies those without name conflicts.
 
 ## Setup
 
