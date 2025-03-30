@@ -1,6 +1,6 @@
 {
   "name": "marked-typograf",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "marked extension for typograf",
   "main": "./lib/index.cjs",
   "module": "./lib/index.mjs",
@@ -9,7 +9,9 @@
     "marked",
     "extension",
     "typograf",
-    "typography"
+    "smart",
+    "typography",
+    "plugin"
   ],
   "files": [
     "lib/",

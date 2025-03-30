@@ -22,6 +22,27 @@ describe('markedTypograf', () => {
     expect(marked('Hello -- "world"!')).toBe('<p>Hello — «world»!</p>');
   });
 
+  test('supports several locales', () => {
+    const opts = {
+      typografOptions: {
+        locale: ['ru', 'en-US'],
+      },
+    };
+    marked.use(markedTypograf(opts));
+    expect(marked('Hello -- "world", а как же ещё!')).toBe('<p>Hello — «world», а как же ещё!</p>');
+  });
+
+  test('supports different entities', () => {
+    const opts = {
+      typografOptions: {
+        locale: 'en-US',
+        htmlEntity: { type: 'name' },
+      },
+    };
+    marked.use(markedTypograf(opts));
+    expect(marked('Hello -- "world"!')).toBe('<p>Hello&nbsp;&mdash; &ldquo;world&rdquo;!</p>');
+  });
+
   test('preserves code span with such a safe tag set', () => {
     const opts = {
       typografSetup: (tp) => {
@@ -66,7 +87,7 @@ describe('markedTypograf', () => {
         handler: function(text) {
           return text.replace(/:-\)/g, ':—)');
         },
-      }]
+      }],
     };
     marked.use(markedTypograf(opts));
     expect(marked(':-)')).toBe('<p>:—)</p>');

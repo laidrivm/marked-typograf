@@ -3,7 +3,7 @@ import Typograf from 'typograf';
 export function markedTypograf(opts = {}) {
   if (opts.customRules) {
     for (const rule of opts.customRules) {
-      if (!Typograf.getRule(rule.name)){
+      if (!Typograf.getRule(rule.name)) {
         Typograf.addRule(rule);
       }
     }
