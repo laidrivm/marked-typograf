@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Restore Bun Cache
         uses: actions/cache@v3
         with:
@@ -50,6 +52,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Restore Bun Cache
         uses: actions/cache@v3
         with:
@@ -71,6 +75,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Restore Bun Cache
         uses: actions/cache@v3
         with:
