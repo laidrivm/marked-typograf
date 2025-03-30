@@ -1,5 +1,4 @@
 name: "CI"
-
 on:
   pull_request:
   push:
@@ -7,63 +6,60 @@ on:
       - main
 
 jobs:
-  setup:
+  Setup:
     runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.value }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      
+      - name: Generate Cache Key
+        id: cache-key
+        run: echo "value=bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}" >> $GITHUB_OUTPUT
+
+  Verify:
+    needs: Setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [test, coverage, lint, build]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
+      
       - name: Cache Dependencies
         uses: actions/cache@v3
         with:
           path: ~/.bun
-          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          key: ${{ needs.Setup.outputs.cache-key }}
           restore-keys: |
             bun-${{ runner.os }}-
+      
       - name: Install Dependencies
         run: bun install --frozen-lockfile
-    outputs:
-      cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
-
-  test-suite:
-    needs: setup
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        task: [test, "test --coverage", "run lint"]
-    name: Run ${{ matrix.task }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-      - name: Restore Bun Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.bun
-          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
-      - name: Run Task
-        run: bun ${{ matrix.task }}
-
-  Build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-      - name: Restore Bun Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.bun
-          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+      
+      - name: Run Test
+        if: matrix.task == 'test'
+        run: bun test
+      
+      - name: Run Test Coverage
+        if: matrix.task == 'coverage'
+        run: bun test --coverage
+      
+      - name: Lint
+        if: matrix.task == 'lint'
+        run: bun run lint
+      
       - name: Build
+        if: matrix.task == 'build'
         run: bun run build
 
   Release:
-    needs: [test-suite, Build]
+    needs: [Verify]
     if: |
       github.ref == 'refs/heads/main' &&
       github.event.repository.fork == false
@@ -75,13 +71,24 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
-      - name: Restore Bun Cache
+      
+      - name: Cache Dependencies
         uses: actions/cache@v3
         with:
           path: ~/.bun
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+      
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+      
+      - name: Build
+        run: bun run build
+      
       - name: Release
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
