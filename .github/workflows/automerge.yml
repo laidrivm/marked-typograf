@@ -10,7 +10,7 @@ jobs:
   Automerge:
     runs-on: ubuntu-latest
     if: |
-      github.event.workflow_run.event == 'pull_request' &&
+      github.ref != 'refs/heads/main' &&
       github.event.workflow_run.conclusion == 'success'
     steps:
       - name: 'Merge PR'
@@ -23,10 +23,7 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.payload.workflow_run.pull_requests[0].number,
             });
-            if (!pr.data.title.startsWith('chore(deps-dev):')) {
-              console.log('Not Merged 🚫');
-              console.log(`Title '${pr.data.title}' does not start with 'chore(deps-dev):'`);
-            } else if (pr.data.user.login !== 'dependabot[bot]') {
+            if (pr.data.user.login !== 'dependabot[bot]') {
               console.log('Not Merged 🚫');
               console.log(`User '${pr.data.user.login}' does not equal 'dependabot[bot]'`);
             } else {
