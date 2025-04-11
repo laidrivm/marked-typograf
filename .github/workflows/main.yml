@@ -40,7 +40,7 @@ jobs:
             bun-${{ runner.os }}-
       
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
       
       - name: Run Test
         if: matrix.task == 'test'
@@ -84,7 +84,7 @@ jobs:
             bun-${{ runner.os }}-
       
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
       
       - name: Build
         run: bun run build
