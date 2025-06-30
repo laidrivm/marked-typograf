@@ -42,7 +42,7 @@
     "marked": ">=15"
   },
   "devDependencies": {
-    "@markedjs/eslint-config": "^1.0.12",
+    "@markedjs/eslint-config": "^1.0.13",
     "eslint": "^9.30.0",
     "esbuild": "^0.25.5"
   },
