@@ -4,7 +4,7 @@
     "": {
       "name": "marked-extension-template",
       "dependencies": {
-        "marked": "^15.0.12",
+        "marked": "^16.0.0",
         "typograf": "^7.4.4",
       },
       "devDependencies": {
