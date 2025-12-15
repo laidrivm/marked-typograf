@@ -32,7 +32,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
       
       - name: Cache Dependencies
-        uses: actions/cache@v4.3.0
+        uses: actions/cache@v5.0.1
         with:
           path: ~/.bun
           key: ${{ needs.Setup.outputs.cache-key }}
@@ -76,7 +76,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
       
       - name: Cache Dependencies
-        uses: actions/cache@v4.3.0
+        uses: actions/cache@v5.0.1
         with:
           path: ~/.bun
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb') }}
