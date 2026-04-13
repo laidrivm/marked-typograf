@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@markedjs/eslint-config": "^1.0.14",
-    "eslint": "^9.39.2",
+    "eslint": "^10.2.0",
     "esbuild": "^0.28.0"
   },
   "dependencies": {
