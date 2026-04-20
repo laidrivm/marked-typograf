@@ -47,7 +47,7 @@
     "esbuild": "^0.28.0"
   },
   "dependencies": {
-    "typograf": "^7.6.0",
+    "typograf": "^7.7.0",
     "marked": "^18.0.2"
   }
 }
