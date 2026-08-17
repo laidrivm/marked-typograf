@@ -44,7 +44,7 @@
   "devDependencies": {
     "@markedjs/eslint-config": "^1.0.14",
     "eslint": "^9.39.2",
-    "esbuild": "^0.28.1"
+    "esbuild": "^0.28.2"
   },
   "dependencies": {
     "typograf": "^7.7.0",
