@@ -6,7 +6,7 @@
       "name": "marked-extension-template",
       "dependencies": {
         "marked": "^18.0.10",
-        "typograf": "^7.7.0",
+        "typograf": "^7.8.0",
       },
       "devDependencies": {
         "@markedjs/eslint-config": "^1.0.14",
@@ -321,7 +321,7 @@
 
     "typescript-eslint": ["typescript-eslint@8.46.4", "", { "dependencies": { "@typescript-eslint/eslint-plugin": "8.46.4", "@typescript-eslint/parser": "8.46.4", "@typescript-eslint/typescript-estree": "8.46.4", "@typescript-eslint/utils": "8.46.4" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <6.0.0" } }, "sha512-KALyxkpYV5Ix7UhvjTwJXZv76VWsHG+NjNlt/z+a17SOQSiOcBdUXdbJdyXi7RPxrBFECtFOiPwUJQusJuCqrg=="],
 
-    "typograf": ["typograf@7.7.0", "", {}, "sha512-VaUj5T5KjAeXVsGdSJsaKaxiPq/dC1WB+xo+Y0aclUQ+omBQvCejqCk3t5QEY8n0OnTRYvUiPd2/rod1KAQzxA=="],
+    "typograf": ["typograf@7.8.0", "", {}, "sha512-Eo+Fu7iM0ASkYOgsI3veGtdkxI+QhMgJBmyftB16Or+g6B2pC4NgsAPT7nP36BzVx7720IMmvkWf7N9O33HNHg=="],
 
     "uri-js": ["uri-js@4.4.1", "", { "dependencies": { "punycode": "^2.1.0" } }, "sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg=="],
 
