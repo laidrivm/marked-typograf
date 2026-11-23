@@ -48,6 +48,6 @@
   },
   "dependencies": {
     "typograf": "^7.9.1",
-    "marked": "^18.2.0"
+    "marked": "^18.2.1"
   }
 }
